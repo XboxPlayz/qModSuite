@@ -22,7 +22,6 @@ public class Main extends JavaPlugin {
     public void onEnable(){
         instance = this;
 
-
         getLogger().info("Registering events...");
         setupEvents();
         getLogger().info("Events registered!");
