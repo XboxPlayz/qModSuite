@@ -17,8 +17,8 @@ import java.util.List;
 
 public class ModModeHandler implements Listener {
 
-    private static List< OfflinePlayer > isInModMode = new ArrayList<>();
-    private static List< OfflinePlayer > Vanished = new ArrayList< OfflinePlayer >();
+    private List< OfflinePlayer > isInModMode = new ArrayList<>();
+    private List< OfflinePlayer > Vanished = new ArrayList< OfflinePlayer >();
 
         public void enableStaffMode(Player player){
 
@@ -118,12 +118,12 @@ public class ModModeHandler implements Listener {
         player.getInventory().setItem(slot, skull);
     }
 
-    public static boolean isVanished( Player player )
+    public boolean isVanished( Player player )
     {
         return Vanished.contains( player );
     }
 
-    public static boolean isModMode( OfflinePlayer p )
+    public boolean isModMode( OfflinePlayer p )
     {
         return isInModMode.contains( p );
     }

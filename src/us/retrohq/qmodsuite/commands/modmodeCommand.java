@@ -8,7 +8,6 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 import us.retrohq.qmodsuite.Main;
-import us.retrohq.qmodsuite.handlers.ModModeHandler;
 
 public class modmodeCommand implements CommandExecutor, Listener {
 
@@ -20,7 +19,7 @@ public class modmodeCommand implements CommandExecutor, Listener {
 
         Player p = (Player) sender;
 
-        if ( ModModeHandler.isModMode( p ) )
+        if ( Main.getInstance().mm.isModMode( p ) )
         {
             Main.getInstance().mm.disableStaffMode( p );
         } else
