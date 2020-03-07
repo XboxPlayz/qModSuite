@@ -27,6 +27,7 @@ public class ModModeHandler implements Listener {
     public boolean isVanished(Player player) {
         return Vanished.contains(player);
     }
+
     public void enableStaffMode(Player player){
 
         Inventory inv = player.getInventory();
@@ -58,6 +59,7 @@ public class ModModeHandler implements Listener {
             player.setGameMode(GameMode.SURVIVAL);
         }
     }
+
     public void disableStaffMode(Player player){
         // Inform the player
         player.sendMessage(Color.msg("&6Mod Mode: &cDisabled"));
@@ -71,6 +73,7 @@ public class ModModeHandler implements Listener {
 
         player.setAllowFlight(false);
     }
+
     private void toggleVanish(Player player){
         if (isVanished(player)) {
             for (Player all : Bukkit.getOnlinePlayers()) {
@@ -85,10 +88,13 @@ public class ModModeHandler implements Listener {
             Vanished.add(player);
             giveStaffItemColored(player, Material.INK_SACK, "&bBecome Visible", (byte) 8, 8);
         }
+
+
         if(player.hasPermission("qmodsuite.staff")) {
             player.showPlayer(player);
         }
     }
+
     private void giveStaffItem(Player player, Material mat, String name, String lore, int slot) {
         ItemStack item = new ItemStack(mat, 1);
         ItemMeta itemMeta = item.getItemMeta();
@@ -101,6 +107,7 @@ public class ModModeHandler implements Listener {
 
         player.getInventory().setItem(slot, item);
     }
+
     private void giveStaffItemColored(Player player, Material mat, String name, byte colorMeta, int slot) {
         ItemStack item = new ItemStack(mat, 1, (byte) colorMeta);
         ItemMeta itemMeta = item.getItemMeta();
@@ -110,6 +117,7 @@ public class ModModeHandler implements Listener {
 
         player.getInventory().setItem(slot, item);
     }
+
     private void giveSkull(Player player, String name, String owner, int slot) {
         ItemStack skull = new ItemStack(Material.SKULL_ITEM, 1, (byte) 3);
         SkullMeta skullMeta = (SkullMeta) skull.getItemMeta();
@@ -118,4 +126,6 @@ public class ModModeHandler implements Listener {
         skull.setItemMeta(skullMeta);
         player.getInventory().setItem(slot, skull);
     }
+
+
 }
