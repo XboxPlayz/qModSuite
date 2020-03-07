@@ -1,0 +1,26 @@
+name: qModSuite
+version: 0.1
+main: us.redhcf.qmodsuite.Main
+
+commands:
+  mod:
+    description: Enter Staff mode.
+    aliases: [v, modmode, staff, h]
+  invsee:
+    description: View player inventory.
+    usage: /invsee <player>
+  clear:
+    description: Clear a players inventory.
+  clearchat:
+    description: Clear the ingame chat.
+  rename:
+    description: Renames the current item in your hand.
+  Teleport:
+    description: Teleport to a player.
+    aliases: [tp]
+  Tphere:
+    description: Tp a player to your current location.
+    aliases: [s]
+  freeze:
+    description: Freeze a player
+    aliases: [ss]

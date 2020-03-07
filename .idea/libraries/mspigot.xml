@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="mspigot">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/libs/mspigot.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/qLib-LATEST.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/lombok.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$PROJECT_DIR$/libs/mspigot.jar!/" />
+    </SOURCES>
+  </library>
+</component>
