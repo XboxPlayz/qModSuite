@@ -31,7 +31,7 @@ public class clearchatCommand implements CommandExecutor {
             }
             Bukkit.broadcastMessage(Color.msg("&aChat has been cleared by&r " + player.getDisplayName() + "&a."));
         }else{
-            sender.sendMessage(Main.getPermMsg());
+            sender.sendMessage(Color.msg("&cNo permission."));
         }
 
 

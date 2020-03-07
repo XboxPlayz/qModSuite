@@ -18,14 +18,13 @@ public class invseeCommand implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
         if (!(sender instanceof Player)) {
-            sender.sendMessage(Main.getConsoleMsg());
             return true;
         }
 
         Player player = (Player) sender;
 
         if (!(player.hasPermission("qmodsuite.staff.invsee"))) {
-            player.sendMessage(Main.getPermMsg());
+            sender.sendMessage(Color.msg("&cNo permission."));
             return true;
         }
 

@@ -34,7 +34,7 @@ public class gmCommand implements CommandExecutor {
             }
             return true;
         }else{
-            sender.sendMessage(Main.getPermMsg());
+            sender.sendMessage(Color.msg("&cNo permission."));
         }
 
         return false;

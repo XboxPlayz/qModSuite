@@ -4,5 +4,21 @@ version: 1.0 SNAPSHOT
 main: us.retrohq.qmodsuite.Main
 
 commands:
-  fly:
-    aliases: [flight]
+  gm:
+    aliases: []
+  gmc:
+    aliases: []
+  gms:
+    aliases: []
+  tp:
+    aliases: [teleport]
+  tphere:
+    aliases: [teleporthere]
+  invsee:
+    aliases: inventorysee]
+  clearchat:
+    aliases: [cc]
+  clear:
+    aliases: []
+  mod:
+    aliases: []

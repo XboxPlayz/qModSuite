@@ -13,7 +13,6 @@ public class gmsCommand implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
         if(!(sender instanceof Player)){
-            sender.sendMessage(Main.getConsoleMsg());
             return true;
         }
 
@@ -22,7 +21,7 @@ public class gmsCommand implements CommandExecutor {
             p.setGameMode(GameMode.SURVIVAL);
             p.sendMessage(Color.msg("&6Your gamemode has been updated to &fSURVIVAL&6."));
         }else{
-            sender.sendMessage(Main.getPermMsg());
+            sender.sendMessage(Color.msg("&cNo permission."));
         }
 
         return false;

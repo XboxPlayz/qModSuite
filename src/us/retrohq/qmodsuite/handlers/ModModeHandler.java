@@ -28,29 +28,29 @@ public class ModModeHandler implements Listener {
         return Vanished.contains(player);
     }
 
-    public void enableStaffMode(Player player){
+        public void enableStaffMode(Player player){
 
-        Inventory inv = player.getInventory();
-        inv.clear();
+            Inventory inv = player.getInventory();
+            inv.clear();
 
-        //staff items
-        giveStaffItem(player, Material.COMPASS, "&bCompass", "", 0);
-        giveStaffItem(player, Material.BOOK, "&bInspection Book", "", 1);
-        giveStaffItemColored(player, Material.CARPET, "&6 ", (byte) 1, 2);
-        giveSkull(player, "&bOnline Staff", "Steve", 7);
-
-        if (player.hasPermission("qmodsuite.staff.headstaff")) {
-
+            //staff items
             giveStaffItem(player, Material.COMPASS, "&bCompass", "", 0);
             giveStaffItem(player, Material.BOOK, "&bInspection Book", "", 1);
-            giveStaffItem(player, Material.WOOD_AXE, "&bWorldEdit Wand", "&c", 2);
-            giveStaffItemColored(player, Material.CARPET, "&6 ", (byte) 1, 3);
+            giveStaffItemColored(player, Material.CARPET, "&6 ", (byte) 1, 2);
             giveSkull(player, "&bOnline Staff", "Steve", 7);
-        }
 
-        player.setAllowFlight(true);
-        toggleVanish(player);
-        player.sendMessage(Color.msg("&6Mod Mode: &aEnabled"));
+            if (player.hasPermission("qmodsuite.staff.headstaff")) {
+
+                giveStaffItem(player, Material.COMPASS, "&bCompass", "", 0);
+                giveStaffItem(player, Material.BOOK, "&bInspection Book", "", 1);
+                giveStaffItem(player, Material.WOOD_AXE, "&bWorldEdit Wand", "&c", 2);
+                giveStaffItemColored(player, Material.CARPET, "&6 ", (byte) 1, 3);
+                giveSkull(player, "&bOnline Staff", "Steve", 7);
+            }
+
+            player.setAllowFlight(true);
+            toggleVanish(player);
+            player.sendMessage(Color.msg("&6Mod Mode: &aEnabled"));
         Vanished.add(player);
 
         if (player.hasPermission("qmodsuite.staff.creative")) {

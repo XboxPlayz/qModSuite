@@ -13,7 +13,6 @@ public class tpCommand implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
         if(!(sender instanceof Player)){
-            sender.sendMessage(Main.getConsoleMsg());
             return true;
         }
 
@@ -32,7 +31,7 @@ public class tpCommand implements CommandExecutor {
                 return true;
             }
         }else{
-            sender.sendMessage(Main.getPermMsg());
+            sender.sendMessage(Color.msg("&cNo permission."));
         }
 
         return true;

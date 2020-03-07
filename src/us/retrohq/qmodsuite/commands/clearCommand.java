@@ -13,7 +13,6 @@ public class clearCommand implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
         if(!(sender instanceof Player)){
-            sender.sendMessage(Main.getConsoleMsg());
             return true;
         }
 
@@ -36,7 +35,7 @@ public class clearCommand implements CommandExecutor {
             }
 
         }else{
-            sender.sendMessage(Main.getPermMsg());
+            sender.sendMessage(Color.msg("&cNo permission."));
         }
 
         return false;
