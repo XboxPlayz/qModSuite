@@ -15,7 +15,6 @@ import us.retrohq.qmodsuite.util.ChestGUI;
 
 public class OnlineStaff implements Listener {
 
-    @SuppressWarnings("deprecation")
     public void openOnlineGUI(Player player) {
         ChestGUI gui = new ChestGUI(ChatColor.YELLOW + "Online Staff", 9, new ChestGUI.OptionClickEventHandler() {
 
