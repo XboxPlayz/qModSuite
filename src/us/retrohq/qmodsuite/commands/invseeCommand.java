@@ -5,11 +5,17 @@ import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
-import us.retrohq.qmodsuite.Main;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.Listener;
+import org.bukkit.event.player.PlayerInteractEntityEvent;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
 import us.retrohq.qmodsuite.util.Color;
 
-public class invseeCommand implements CommandExecutor {
+public class invseeCommand implements CommandExecutor, Listener {
+
 
     private void openInvseeMenu(Player playerToInvsee, Player playerWhoWantsToSeeTheOtherPlayer) {
         playerWhoWantsToSeeTheOtherPlayer.openInventory(playerToInvsee.getInventory());
@@ -18,13 +24,14 @@ public class invseeCommand implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
         if (!(sender instanceof Player)) {
+            sender.sendMessage(Color.msg("&cPlayer use only."));
             return true;
         }
 
         Player player = (Player) sender;
 
         if (!(player.hasPermission("qmodsuite.staff.invsee"))) {
-            sender.sendMessage(Color.msg("&cNo permission."));
+            player.sendMessage(ChatColor.RED + "No perimission.");
             return true;
         }
 
@@ -41,11 +48,41 @@ public class invseeCommand implements CommandExecutor {
         }
 
         openInvseeMenu(target, player);
-        player.sendMessage(Color.msg("&6Opening the inventory of:&r " + target.getDisplayName()));
+//        player.sendMessage(Color.msg("&6Opening the inventory of:&r " + target.getDisplayName()));
 
 
         return true;
     }
 
+    @EventHandler
+    public void playerRightClickPlayer(PlayerInteractEntityEvent e){
+
+        if(e.getRightClicked().getType().equals(EntityType.PLAYER)){
+            //right click another player
+            Player playerWhoRightClicked = e.getPlayer();
+            Player playerWhoGotClicked = (Player) e.getRightClicked();
+
+            if(playerWhoRightClicked.getItemInHand() != null){
+                ItemStack is = playerWhoRightClicked.getItemInHand();
+
+                if(is.getItemMeta() != null){
+                    ItemMeta im = is.getItemMeta();
+                    if(im.getDisplayName() != null && !im.getDisplayName().isEmpty()){
+
+                        if(im.getDisplayName().equalsIgnoreCase(ChatColor.translateAlternateColorCodes('&', "&bInspection Book"))){
+                            openInvseeMenu(playerWhoGotClicked, playerWhoRightClicked);
+                            playerWhoRightClicked.sendMessage(Color.msg("&6Opening the inventory of:&r " + playerWhoGotClicked.getDisplayName()));
+                        }
+
+                    }
+                }
+
+            }
+        }
+
+    }
+
 
 }
+
+

@@ -1,45 +1,21 @@
 package us.retrohq.qmodsuite.commands;
 
-import org.bukkit.command.Command;
-import org.bukkit.command.CommandExecutor;
-import org.bukkit.command.CommandSender;
+
+import net.frozenorb.qlib.command.Command;
+import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
-import org.bukkit.event.EventHandler;
-import org.bukkit.event.Listener;
-import org.bukkit.event.player.PlayerJoinEvent;
 import us.retrohq.qmodsuite.Main;
 
-public class modmodeCommand implements CommandExecutor, Listener {
+public class modmodeCommand {
 
-    @Override
-    public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
-        if(!(sender instanceof Player)){
-            return true;
-        }
+    @Command(names = {"mod", "staff", "h"}, permission = "qmodsuite.staff")
+    public static void modmode(Player p){
 
-        Player p = (Player) sender;
-
-        if ( Main.getInstance().mm.isModMode( p ) )
-        {
-            Main.getInstance().mm.disableStaffMode( p );
-        } else
-        {
-            Main.getInstance().mm.enableStaffMode( p );
-        }
-        return false;
-    }
-
-    @EventHandler
-    public void staffConnect(PlayerJoinEvent e){
-        Player p = e.getPlayer();
-
-        if(p.hasPermission("qmodsuite.staff")){
-            Main.getInstance().mm.enableStaffMode(p);
-
-        }else{
-            return;
+        if (Main.getInstance().getModModeHandler().switchModMode(p)) {
+            p.sendMessage(ChatColor.GOLD + "Mod Mode: " + ChatColor.GREEN + "Enabled");
+        } else {
+            p.sendMessage(ChatColor.GOLD + "Mod Mode: " + ChatColor.RED + "Disabled");
         }
 
     }
-
 }

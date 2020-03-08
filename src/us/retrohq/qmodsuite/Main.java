@@ -1,11 +1,13 @@
 package us.retrohq.qmodsuite;
 
 import lombok.Getter;
+import net.frozenorb.qlib.command.FrozenCommandHandler;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
+import us.retrohq.modified.ModModeListener;
 import us.retrohq.qmodsuite.commands.*;
-import us.retrohq.qmodsuite.handlers.ModModeHandler;
+import us.retrohq.modified.ModModeHandler;
 import us.retrohq.qmodsuite.handlers.OnlineStaff;
 import us.retrohq.qmodsuite.util.Color;
 
@@ -16,11 +18,16 @@ public class Main extends JavaPlugin {
     private static Main instance;
     @Getter private static final String PermMsg = Color.msg("&cNo permission.");
     @Getter private static final String ConsoleMsg = Color.msg("&cThis command can only be executed by players!");
-    public ModModeHandler mm = new ModModeHandler();
+
+
+    //    public ModModeHandler mm = new ModModeHandler();
+     private ModModeHandler modModeHandler;
 
     @Override
     public void onEnable(){
         instance = this;
+        modModeHandler = new ModModeHandler();
+        FrozenCommandHandler.registerAll(this);
 
         getLogger().info("Registering events...");
         setupEvents();
@@ -38,25 +45,21 @@ public class Main extends JavaPlugin {
 
     public void setupEvents(){
         PluginManager pm = Bukkit.getPluginManager();
-        pm.registerEvents(new ModModeHandler(), this);
+        pm.registerEvents(new invseeCommand(), this);
         pm.registerEvents(new OnlineStaff(), this);
-        pm.registerEvents(new modmodeCommand(), this);
+        pm.registerEvents(new ModModeListener(), this);
     }
 
     public void setupCommands(){
-        getCommand("gm").setExecutor(new gmCommand());
-        getCommand("gmc").setExecutor(new gmcCommand());
-        getCommand("gms").setExecutor(new gmsCommand());
-        getCommand("tp").setExecutor(new tpCommand());
-        getCommand("tphere").setExecutor(new tphereCommand());
         getCommand("invsee").setExecutor(new invseeCommand());
-        getCommand("clearchat").setExecutor(new clearchatCommand());
-        getCommand("clear").setExecutor(new clearCommand());
-        getCommand("mod").setExecutor(new modmodeCommand());
     }
 
     public static Main getInstance() {
         return instance;
+    }
+
+    public ModModeHandler getModModeHandler() {
+        return modModeHandler;
     }
 
 }

@@ -4,31 +4,5 @@ version: 1.0 SNAPSHOT
 main: us.retrohq.qmodsuite.Main
 
 commands:
-  gm:
-    description: Toggle your gamemode between survival and creative.
-    usage: /<command>
-    aliases: []
-  gmc:
-    description: Set your gamemode to creative.
-    aliases: []
-  gms:
-    description: Set your gamemode to survival.
-    aliases: []
-  tp:
-    description: Teleport to a player.
-    aliases: [teleport]
-  tphere:
-    description: Teleport a player to you.
-    aliases: [teleporthere]
   invsee:
-    description: Open a player's inventory
-    aliases: inventorysee]
-  clearchat:
-    description: Clear the chat.
-    aliases: [cc]
-  clear:
-    description: Clear your inventory.
-    aliases: []
-  mod:
-    description: Toggle Mod Mode.
     aliases: []
