@@ -5,9 +5,10 @@ import net.frozenorb.qlib.command.FrozenCommandHandler;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
-import us.retrohq.modified.ModModeListener;
-import us.retrohq.qmodsuite.commands.*;
 import us.retrohq.modified.ModModeHandler;
+import us.retrohq.modified.ModModeListener;
+import us.retrohq.qmodsuite.commands.RenameCommand;
+import us.retrohq.qmodsuite.commands.invseeCommand;
 import us.retrohq.qmodsuite.handlers.OnlineStaff;
 import us.retrohq.qmodsuite.util.Color;
 
@@ -43,15 +44,18 @@ public class Main extends JavaPlugin {
         instance = null;
     }
 
-    public void setupEvents(){
+    private void setupEvents()
+    {
         PluginManager pm = Bukkit.getPluginManager();
         pm.registerEvents(new invseeCommand(), this);
         pm.registerEvents(new OnlineStaff(), this);
         pm.registerEvents(new ModModeListener(), this);
     }
 
-    public void setupCommands(){
+    private void setupCommands()
+    {
         getCommand("invsee").setExecutor(new invseeCommand());
+        getCommand( "rename" ).setExecutor( new RenameCommand() );
     }
 
     public static Main getInstance() {

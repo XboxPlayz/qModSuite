@@ -6,3 +6,6 @@ main: us.retrohq.qmodsuite.Main
 commands:
   invsee:
     aliases: []
+  rename:
+    description: Rename the item you are holding in your hand
+    usage: /<command>

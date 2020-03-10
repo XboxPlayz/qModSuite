@@ -1,27 +1,35 @@
 package us.retrohq.qmodsuite.commands;
 
-import net.frozenorb.qlib.command.Command;
 import org.bukkit.ChatColor;
+import org.bukkit.command.Command;
+import org.bukkit.command.CommandExecutor;
+import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
-public class RenameCommand
+public class RenameCommand implements CommandExecutor
 {
-    @Command( names = { "rename" }, permission = "qmodsuite.staff", description = "Rename the item you are currently holding.", hidden = true )
-    public static void commandRename( Player p, String[] args )
+    @Override
+    public boolean onCommand( CommandSender sender, Command command, String s, String[] strings )
     {
+        if ( !( sender instanceof Player ) )
+        {
+            sender.sendMessage( "Only players may execute this command!" );
+            return true;
+        }
+        Player p = ( ( Player ) sender );
         ItemStack heldItem = p.getItemInHand();
         ItemMeta meta = heldItem.getItemMeta();
         StringBuilder sb = new StringBuilder();
-        if ( args.length == 1 )
+        if ( strings.length == 1 )
         {
-            meta.setDisplayName( args[ 0 ] );
+            meta.setDisplayName( strings[ 0 ] );
         } else
         {
-            for ( String s : args )
+            for ( String str : strings )
             {
-                sb.append( s );
+                sb.append( str );
                 sb.append( " " );
             }
             String result = sb.toString();
@@ -29,6 +37,6 @@ public class RenameCommand
             heldItem.setItemMeta( meta );
             p.sendMessage( ChatColor.GREEN + "You have successfully renamed your held item to " + result + "!" );
         }
-
+        return true;
     }
 }
